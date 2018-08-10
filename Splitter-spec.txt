@@ -1,0 +1,27 @@
+*** Taks description
+- Alice, Bob and Carol are holders of at least one address.
+- If Alice sends ether to the contract, the contract will send half of the amount to Bob and the other half to Carol.
+
+
+*** Contract specs
+- Everyone can send ether to the contract.
+- If sender==Alice, half of the value is forwarded to Bob and half to Carol.
+- Forwarding means actually sending ether to Bob's and Carol's address
+- If value is odd, 1 wei is retained by the contract and the rest goes to Bob + Carol.
+- Alice is the contract's owner
+
+
+*** Web page spec
+- Display contract's balance
+- Display balance of Alice, Bob, Carol
+- Getting the balances is done via JS asking the local node for information, not using a contract function
+- Provide field "Amount in wei" and button "Split" to send amount to contract 
+
+
+
+*** Security
+- The page (JS) knows about the addresses of Alice and the contract
+- If button "Split" is hit, the coinbase will be used.
+This way users will refer to their own accounts when they hit the button. This  prevents any other user from sending ether on behalf of Alice. Moreover, Alice's coinbase is the contract's owner, so nothing bad will happen when using an account other than Alice's. We just have to check.
+
+
