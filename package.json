@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/zweiacker/b9lab-splitter-project/issues"
   },
-  "homepage": "https://github.com/zweiacker/b9lab-splitter-project#readme"
+  "homepage": "https://github.com/zweiacker/b9lab-splitter-project#readme",
+  "dependencies": {
+    "web3": "^1.0.0-beta.35"
+  }
 }

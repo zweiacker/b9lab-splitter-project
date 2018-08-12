@@ -1,14 +1,16 @@
 *** Taks description
 - Alice, Bob and Carol are holders of at least one address.
-- If Alice sends ether to the contract, the contract will send half of the amount to Bob and the other half to Carol.
+- If Alice sends ether to the contract, the contract will credit half of the amount to Bob and the other half to Carol.
+- Bob and Carol can withdraw their balance anytime they like.
 
 
 *** Contract specs
-- Everyone can send ether to the contract.
-- If sender==Alice, half of the value is forwarded to Bob and half to Carol.
-- Forwarding means actually sending ether to Bob's and Carol's address
+- Alice is the contract's owner.
+- Everyone can send ether to the contract. For a sender other than Alice, sending ether means to fund the contract's account, but not being part of the split.
+- If sender==Alice and value>0, half of the value is credited to Bob and half to Carol. To credit means to augment the balance of each. No further tx taking place at this moment.
 - If value is odd, 1 wei is retained by the contract and the rest goes to Bob + Carol.
-- Alice is the contract's owner
+- If value is odd again at a later time, the retained 1 wei is refunded to Alice's donation before the split.
+- Bob and Carol can withdraw their balance anytime. The tx will not take place if balance is empty.
 
 
 *** Web page spec
@@ -16,7 +18,6 @@
 - Display balance of Alice, Bob, Carol
 - Getting the balances is done via JS asking the local node for information, not using a contract function
 - Provide field "Amount in wei" and button "Split" to send amount to contract 
-
 
 
 *** Security

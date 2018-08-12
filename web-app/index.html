@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>Splitter Manager</title>
+    <script src="./web3.js"></script>
+    <script src="./SplitterCompiled.js"></script>
+    <script src="./Splitter.js"></script>
+</head>
+<body>
+
+<script>
+
+function showInfo() {
+    var splitter_bal = web3.eth.getBalance(splitterAddress);
+    var aliceAcc = web3.eth.getBalance(web3.eth.accounts[0]);
+    var bobAcc = web3.eth.getBalance(web3.eth.accounts[1]);
+    var carolAcc = web3.eth.getBalance(web3.eth.accounts[2]);
+    document.getElementById("split_acc").innerHTML = "Splitter Account: " + splitter_bal;
+    document.getElementById("alice_acc").innerHTML = "Alice Account: " + aliceAcc;
+    document.getElementById("bob_acc").innerHTML =   "Bob Account: " + bobAcc;
+    document.getElementById("carol_acc").innerHTML = "Carol Account: " + carolAcc;
+}
+
+function callDonate() {
+    var x = document.getElementById("WeiId").elements[0].value;
+    donate(x);
+}
+</script>
+
+	<form id="WeiId">
+	Donate Wei: <input type="number" name="amt" value=10000000><br>
+	</form> 
+	<button onclick="callDonate()">Donate</button>
+	<button onclick="showInfo()">Update</button>
+
+	<p id="demo"></p>
+
+	<div id="split_acc"></div>
+	<div id="alice_acc"></div>
+	<div id="bob_acc"></div>
+	<div id="carol_acc"></div>
+
+</body>
+</html>
